@@ -14,6 +14,19 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Pos-Back_End" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.3.25" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.25" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.25" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.25" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.25" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.25" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.25" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.25" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.14.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.14.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.14.1" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/Pos-Back_End/target/Pos-Back_End-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
