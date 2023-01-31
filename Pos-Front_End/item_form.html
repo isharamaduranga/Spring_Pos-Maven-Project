@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item_form</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!--link Bootstrap Framework-->
+    <link rel="stylesheet" href="assests/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/pos_styles.css">
+    <link href="icons/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+    <!--  Defined nav links -->
+    <nav class="navbar navbar-expand-lg bg-primary navColor">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white fw-bold" href="index.html">
+                <img src="assests/images/logo.jpg" alt="Logo" width="40" height="40"
+                     class="d-inline-block align-text-center">
+                POS-SYSTEM
+            </a>
+            <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul id="ul-list" class="navbar-nav  me-auto mb-2 mb-lg-0 text-white">
+                    <li class="nav-item fs-5 ">
+                        <a aria-current="page" class="nav-link text-white" href="index.html" id="linkHome">Home</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white table-hover " href="customer_form.html" id="linkCustomer">Customers</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="item_form.html" id="linkItem">Items</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="place-order_form.html" id="linkOrder">Orders</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="order_details_form.html" id="linkPurchaseOrder">Order-Details</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- ==================== Items Manage Content Start =====================-->
+
+
+<section class="container-fluid mt-3" id="itemContent">
+
+    <!-- ***** Section of Items Details Form ***** -->
+
+    <!-- Title of the Item Form -->
+    <section class="container-fluid mt-1">
+        <div style="height: 10px; text-align: center">
+            <h2 class="bg-secondary border border-2 border-secondary text-light"
+                style="border-radius: 25px; font-family: 'poppins', sans-serif"> M A N A G E - I T E M S </h2>
+        </div>
+    </section>
+
+    <!-- Item related data form -->
+    <section class="container-fluid mt-5">
+
+        <form id="itemForm">
+            <!-- Define First Row-->
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label" for="txtItemCode">Item Code</label>
+                    <input class="form-control" id="txtItemCode" placeholder="I00-001" type="text" name="code">
+                    <span class="control-error_item" id="lblItemCode"></span>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label" for="txtItemName">Item Name</label>
+                    <input class="form-control" id="txtItemName" placeholder="White Rice" type="text"
+                           name="description">
+                    <span class="control-error_item" id="lblItemName"></span>
+                </div>
+            </div>
+
+            <!-- Define Second Row-->
+            <div class="row">
+
+                <div class="mb-3 col">
+                    <label class="form-label" for="txtItemQty">Item Qty</label>
+                    <input class="form-control" id="txtItemQty" placeholder="500" type="number" name="qtyOnHand">
+                    <span class="control-error_item" id="lblItemQty"></span>
+                </div>
+
+                <div class="mb-3 col">
+                    <label class="form-label" for="txtItemPrice">Item Price</label>
+                    <input class="form-control" id="txtItemPrice" placeholder="1500.00" type="number" name="unitPrice">
+                    <span class="control-error_item" id="lblItemPrice"></span>
+                </div>
+
+            </div>
+        </form>
+    </section>
+
+    <!-- Section of Button Group -->
+    <section class="container-fluid mt-1 button ">
+        <button class="btn btn-primary" id="btnItemSave" type="button">Add Item</button>
+        <button class="btn btn-success" id="btnUpdateItem" type="button">Update Item</button>
+        <button class="btn btn-warning" id="btnGetAllItem" type="button">Get All Item</button>
+        <button class="btn btn-danger" id="btnDeleteItem" type="button">Delete Item</button>
+        <button class="btn btn-info" id="btnClearItem" type="button">Clear</button>
+    </section>
+
+
+    <!-- Section of Search Bar -->
+    <section class="container-fluid mt-3">
+        <form class="d-flex">
+            <input aria-label="Search" class="form-control me-2" id="txtSearchItem" placeholder="Search Item..."
+                   type="search">
+            <button class="btn btn-outline-success" id="btnSearchItem" type="button">Search</button>
+        </form>
+    </section>
+
+
+    <!-- Section of Item Table -->
+    <section class="row mt-3">
+        <div class="col" style="height: 297px; overflow-x: scroll">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="bg-secondary text-white" id="tableHead">
+                <tr class="head">
+                    <th scope="col">Item Code</th>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Item QTY</th>
+                    <th scope="col">Item Price</th>
+
+                </tr>
+                </thead>
+                <tbody id="itemTable" class="table-light  ">
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<!--Import js for bootstrap-->
+<script src="assests/js/bootstrap.min.js"></script>
+<script src="assests/jquery/jquery-3.6.1.min.js"></script>
+
+<script>
+    let baseURL="http://localhost:8080/15_Spring_Data_JPA_war/";
+
+    loadAllItems();
+
+    /** ==================================== D E F I N E D   V A L I D A T I O N S ===================================*/
+    /** Item regular expressions */
+    /*  Focused Item Code input field When Firstly open that page..*/
+    $('#txtItemCode').focus();
+
+    const itemCodeRegEx = /^(I00-)[0-9]{1,3}$/;
+    const itemNameRegEx = /^[A-z ]{5,20}$/;
+    const itemPriceRegEx = /^[0-9]{1,}[.]?[0-9]{1,2}$/;
+    const itemQtyRegEx = /^[0-9]{1,7}$/;
+
+    let itemValidationArray = [];
+
+    itemValidationArray.push({
+        reg: itemCodeRegEx,
+        field: $('#txtItemCode'),
+        error: 'Item Code Pattern is Wrong Format: I00-001'
+    });
+    itemValidationArray.push({
+        reg: itemNameRegEx,
+        field: $('#txtItemName'),
+        error: 'Item Name Pattern is Wrong Format: A-z 5-20'
+    });
+    itemValidationArray.push({
+        reg: itemPriceRegEx,
+        field: $('#txtItemPrice'),
+        error: 'Item Price Pattern is Wrong Format: 1000 or 1000.00'
+    });
+    itemValidationArray.push({
+        reg: itemQtyRegEx,
+        field: $('#txtItemQty'),
+        error: 'Item Qty Pattern is Wrong Format: 0-9 {0,7}'
+    });
+
+    /** Text Fields Key down to Tab & prevent Default function.. */
+    $("#txtItemCode,#txtItemName,#txtItemPrice,#txtItemQty").on('keydown', function (event) {
+        if (event.key == "Tab") {
+            event.preventDefault();
+        }
+    });
+    /** Text Fields Key Up to Check validation function.. */
+    $("#txtItemCode,#txtItemName,#txtItemPrice,#txtItemQty").on('keyup', function (event) {
+
+        checkItemValidation();
+
+    });
+    /** Text Fields blur to Check validation function.. */
+    $("#txtItemCode,#txtItemName,#txtItemPrice,#txtItemQty").on('blur', function (event) {
+        checkItemValidation();
+    });
+
+
+    /** Text Fields Key down to focus functionalities... */
+
+    $('#txtItemCode').on('keydown',function (event) {
+        if (event.key == "Enter" && checkItem(itemCodeRegEx, $("#txtItemCode"))) {
+            $("#txtItemName").focus();
+        } else {
+            $("#txtItemCode").focus();
+        }
+    });
+
+    $('#txtItemName').on('keydown',function (event) {
+        if (event.key == "Enter"  && checkItem(itemNameRegEx, $("#txtItemName"))) {
+            $('#txtItemQty').focus();
+        }
+    });
+
+    $('#txtItemQty').on('keydown',function (event) {
+        if (event.key == "Enter"  && checkItem(itemQtyRegEx, $("#txtItemQty"))) {
+            $('#txtItemPrice').focus();
+        }
+    });
+
+    $('#txtItemPrice').on('keydown',function (event) {
+        if (event.key == "Enter"  && checkItem(itemPriceRegEx, $("#txtItemPrice"))) {
+
+            let option = confirm("Do you  Want To Save Item ?");
+            if (option) {
+                saveItems();
+            }
+            $('#txtItemCode').focus();
+        }
+    });
+
+    /** function of CheckItem Validation Event  */
+    function checkItemValidation() {
+        let errorCountItem = 0;
+        for (let validateItem of itemValidationArray) {
+            if (checkItem(validateItem.reg, validateItem.field)) {
+
+                successEventItem(validateItem.field, "");
+
+            } else {
+                /* Increase error count when find a error*/
+                errorCountItem=errorCountItem+1;
+                // to write error event
+                errorEventItem(validateItem.field, validateItem.error);
+            }
+        }
+        setButtonState_Item(errorCountItem);
+    }
+
+    /** function of Check item Event  */
+    function checkItem(regex, field) {
+        if (regex.test(field.val())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /** function of Success Event  */
+    function successEventItem(textField, massage) {
+        if (textField.val().length <= 0) {
+            defaultTextItem(textField, "");
+        } else {
+            textField.css("border","2px solid #049104FF");
+            textField.parent().children('span').text(massage);
+        }
+    }
+
+    /** function of Error Event  */
+    function errorEventItem(textField, error) {
+        if (textField.val().length <= 0) {
+            defaultTextItem(textField, "");
+        } else {
+            textField.css("border","2px solid red");
+            textField.parent().children('span').text(error);
+        }
+    }
+
+    /** function of Default text */
+    function defaultTextItem(textField,text) {
+        textField.css("border", "2px solid #ced4da");
+        textField.parent().children('span').text(text);
+    }
+
+    /** function of Button State */
+    function setButtonState_Item(count) {
+        if (count>0) {
+            $("#btnItemSave").attr('disabled', true);
+        }else {
+            $("#btnItemSave").attr('disabled', false);
+        }
+    }
+
+    /** BIND ROW CLICK EVENT FUNCTION ... */
+    function setData_Bind_Row_Events() {
+        $('#itemTable>tr').click(function () {
+
+            let code = $(this).children(':eq(0)').text();
+            let name = $(this).children(':eq(1)').text();
+            let qty = $(this).children(':eq(2)').text();
+            let price = $(this).children(':eq(3)').text();
+
+            /** setting table details values to text fields */
+            $('#txtItemCode').val(code);
+            $('#txtItemName').val(name);
+            $('#txtItemQty').val(qty);
+            $('#txtItemPrice').val(price);
+        });
+    }
+
+    function clearItemFields() {
+        $('#txtItemCode').val("");
+        $('#txtItemName').val("");
+        $('#txtItemPrice').val("");
+        $('#txtItemQty').val("");
+    }
+
+    $("#btnClearItem").click(function () {
+        clearItemFields();
+    });
+    /** ================================================================================================================ */
+
+
+
+</script>
+
+</body>
+</html>
