@@ -350,6 +350,29 @@
     /** =================================================================================================== */
 
 
+    function saveCustomers() {
+        let formdata = $("#customerForm").serialize();
+
+        $.ajax({
+            url:baseURL+"customer",
+            method:"post",
+            dataType:"json",
+            data:formdata,
+
+            success:function (resp) {
+                alert(resp.message);
+            },
+            error:function (error) {
+                let jSObj = JSON.parse(error.responseText);
+                alert(jSObj.message);
+            }
+
+        })
+    }
+
+    $("#btnCustomerSave").click(function () {
+        saveCustomers();
+    });
 
 
 
