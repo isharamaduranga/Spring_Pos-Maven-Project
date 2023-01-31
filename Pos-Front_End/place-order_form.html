@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap_Pos-System</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!--link Bootstrap Framework-->
+    <link rel="stylesheet" href="assests/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/pos_styles.css">
+    <link href="icons/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-primary navColor">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white fw-bold" href="index.html">
+                <img src="assests/images/logo.jpg" alt="Logo" width="40" height="40"
+                     class="d-inline-block align-text-center">
+                POS-SYSTEM
+            </a>
+            <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul id="ul-list" class="navbar-nav  me-auto mb-2 mb-lg-0 text-white">
+                    <li class="nav-item fs-5 ">
+                        <a aria-current="page" class="nav-link text-white" href="index.html" id="linkHome">Home</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a id="#linkCustomer" class="nav-link text-white table-hover " href="customer_form.html">Customers</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="item_form.html" id="linkItem">Items</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="place-order_form.html" id="linkOrder">Orders</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="order_details_form.html" id="linkPurchaseOrder">Order-Details</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section id="order" style="height: 85vh" class="bg-white">
+    <section class="container-fluid mt-2">
+        <div style="height: 8px; text-align: center">
+            <h2 class="bg-secondary border border-2 border-secondary text-light"
+                style="border-radius: 25px; font-family: 'poppins', sans-serif"> P L A C E - O R D E R S </h2>
+        </div>
+    </section>
+    <div class="container-fluid bg-white mt-5">
+
+        <div class="mt-5">
+            <div class="row ">
+                <div class="col ms-2 " style="background-color: rgba(239,228,168,0.44); border-radius: 30px;">
+                    <section class="container">
+                        <form>
+                            <div class="row">
+                                <div class="bg-warning text-white text-center mb-3 p-2"
+                                     style="border-radius: 25px;"><h5>Invoice Details</h5></div>
+
+                                <div class="col">
+                                    Order ID:
+                                    <form>
+                                        <input class="form-control text-primary text-lg-center"
+                                               style="font-weight: bold " id="txtOrderId" type="button">
+                                        <span class="control-error_item" id="lblOrderID"></span>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    Order Date:
+                                    <form>
+                                        <input class="form-control" id="txtDate" type="date">
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Customer:
+                                    <select class="form-control" id="selectCusID"></select>
+                                </div>
+                                <div class="col">
+                                    Customer ID:
+                                    <form>
+                                        <input class="form-control" id="orderCustomerID">
+                                    </form>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Salary:
+                                    <form>
+                                        <input class="form-control" id="orderCustomerSalary" type="text">
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    Name:
+                                    <form>
+                                        <input class="form-control " id="orderCustomerName" type="text">
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Address:
+                                    <form>
+                                        <input class="form-control " id="orderCustomerAddress" type="text">
+                                    </form>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+                </div>
+
+                <div class="col ms-2 " style="background-color: rgba(152,227,152,0.34); border-radius: 30px;">
+                    <section class="container">
+                        <form>
+                            <div class="row">
+                                <div class="bg-success text-white text-center mb-3 p-2"
+                                     style="border-radius: 25px;"><h5>Item Select</h5></div>
+
+                                <div class="col">
+                                    Item:
+                                    <select class="form-control" id="selectItemCode"></select>
+                                </div>
+                                <div class="col">
+                                    Item Code:
+                                    <form>
+                                        <input class="form-control " id="txtItemCode" type="text">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Item Name:
+                                    <form>
+                                        <input class="form-control " id="txtItemDescription" type="text">
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    Item Price:
+                                    <form>
+                                        <input class="form-control " id="txtItemPrice" type="text">
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    QtyOnH:
+                                    <form>
+                                        <input class="form-control " id="txtQTYOnHand" type="text">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Order QTY:
+                                    <form>
+                                        <input class="form-control " id="txtQty" type="number">
+                                        <span class="control-error_item" id="lblCheckQty"></span>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col button">
+                                    <button class="btn btn-primary mt-5 text-center" id="btnAddToTable" type="button">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+                </div>
+
+                <div class="col ms-2 me-2" style="background-color: rgba(234,182,186,0.25); border-radius: 30px;">
+                    <div class="bg-danger text-white text-center mb-3 p-2"
+                         style="border-radius: 25px;"><h5>Payment Details</h5></div>
+
+                    <h4 class="text-dark p-2" id="total">Total : <span>0.00</span></h4>
+                    <h4 class="text-danger p-2" id="subtotal">Sub Total : <span id="subtot">0.00</span></h4>
+                    <section class="container">
+                        <div class="row">
+                            <div class="col">
+                                Cash:
+                                <form>
+                                    <input class="form-control " id="txtCash" type="text">
+                                    <span class="control-error_item" id="lblCheckCash"></span>
+                                </form>
+                            </div>
+                            <div class="col">
+                                Discount:
+                                <form>
+                                    <input class="form-control " id="txtDiscount" type="text">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                Balance:
+                                <form>
+                                    <input class="form-control " id="txtBalance" type="text">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col button">
+                                <button class="btn btn-outline-success mt-4 mb-2" id="btnSubmitOrder" type="button">
+                                    Purchase-Order
+                                </button>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+
+                <div class="mt-2" style="height: 265px; overflow-x: scroll">
+
+                    <table class="table table-bordered text-white">
+                        <thead class="bg-primary">
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-light text-dark" id="orderTable">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Import js for bootstrap-->
+<script src="assests/jquery/jquery-3.6.1.min.js"></script>
+<script src="assests/js/bootstrap.min.js"></script>
+
+<script>
+    let baseUrl = "";
+
+</script>
+</body>
+</html>
