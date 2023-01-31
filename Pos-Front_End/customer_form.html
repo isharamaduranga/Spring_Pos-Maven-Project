@@ -348,32 +348,7 @@
 
     /** =================================================================================================== */
 
-    function saveCustomer() {
-        //send ajax request to the customer Servlet
 
-        let formData = $("#customerForm").serialize();
-
-        $.ajax({
-            url:baseURL+"customer",
-            method:"post",
-            data:formData,
-            dataType: "json",
-            success:function (resp) {
-                alert(resp.message);
-                loadAllCustomers();
-
-            },
-            error:function (error) {
-
-                let JsnErrObj = JSON.parse(error.responseText);
-                alert(JsnErrObj.message);
-            }
-        });
-    }
-
-    $("#btnCustomerSave").click(function () {
-        saveCustomer();
-    });
 
 
 </script>
