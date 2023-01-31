@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Pos-Back_End/Pos-Back_End.iml" filepath="$PROJECT_DIR$/Pos-Back_End/Pos-Back_End.iml" />
       <module fileurl="file://$PROJECT_DIR$/Pos-Front_End/Pos-Front_End.iml" filepath="$PROJECT_DIR$/Pos-Front_End/Pos-Front_End.iml" />
     </modules>
   </component>
