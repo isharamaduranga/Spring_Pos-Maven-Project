@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customer")
 public class CustomerController {
 
+    @PostMapping
     public void saveCustomer(@ModelAttribute CustomerDTO dto){
 
     }
