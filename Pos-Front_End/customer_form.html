@@ -375,7 +375,27 @@
         saveCustomers();
     });
 
+
+    $("#btnGetAllCustomer").click(function () {
+
+        loadAllCustomers();
+        clearTextFields();
+    })
+
 function loadAllCustomers() {
+
+        $("#customerTable").empty();
+        $.ajax({
+            url: baseURL+"customer",
+            dataType: "json",
+
+            success:function (resp) {
+                for (let cus of resp.data) {
+
+                }
+            }
+        })
+
 
 }
 
