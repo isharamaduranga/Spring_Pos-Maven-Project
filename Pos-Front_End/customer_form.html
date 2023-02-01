@@ -349,6 +349,7 @@
 
     /** =================================================================================================== */
 
+    loadAllCustomers();
 
     // Function of Save customer
     function saveCustomers() {
@@ -362,6 +363,7 @@
 
             success:function (resp) {
                 alert(resp.message);
+                loadAllCustomers()
             },
             error:function (error) {
                 let jSObj = JSON.parse(error.responseText);
@@ -391,8 +393,12 @@ function loadAllCustomers() {
 
             success:function (resp) {
                 for (let cus of resp.data) {
-
+                    $("#customerTable").append("<tr><td>"+cus.id+"</td> <td>"+cus.name+"</td> <td>"+cus.address+"</td> <td>"+cus.salary+"</td></tr>");
                 }
+                setData_Bind_Row_Events();
+                clearTextFields()
+                $("#txtCusId").focus();
+
             }
         })
 
