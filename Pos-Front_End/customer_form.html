@@ -400,6 +400,22 @@ function loadAllCustomers() {
                 $("#txtCusId").focus();
 
             }
+        });
+
+        $("#btnDeleteCustomer").click(function () {
+            let cusId = $("#txtCusId").val();
+            $.ajax({
+                url:baseURL+"customer?id="+cusId,
+                method: "delete",
+                dataType:"json",
+                success:function (resp) {
+                    alert(resp.message);
+                    loadAllCustomers();
+                },
+                error:function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                }
+            })
         })
 
 
