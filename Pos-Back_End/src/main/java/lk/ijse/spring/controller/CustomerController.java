@@ -24,6 +24,7 @@ public class CustomerController {
     @PostMapping
     public void saveCustomer(@ModelAttribute CustomerDTO dto){
         service.addCustomer(dto);
+
     }
 
 }
