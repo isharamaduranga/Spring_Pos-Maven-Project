@@ -31,8 +31,9 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ArrayList<CustomerDTO> getAllCustomers(){
-
+    public ResponseUtil getAllCustomers(){
+        ArrayList<CustomerDTO> allCustomers = service.getAllCustomers();
+        return new ResponseUtil("200","Success..",allCustomers);
     }
 
 }
