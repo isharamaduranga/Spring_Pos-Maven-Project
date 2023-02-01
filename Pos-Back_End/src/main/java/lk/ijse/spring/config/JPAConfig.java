@@ -9,6 +9,7 @@
 package lk.ijse.spring.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -16,10 +17,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+@Configuration
+@EnableTransactionManagement // aspect (Manage all my Transactions automatically using Transaction Manager)
+//link dao classes
 public class JPAConfig {
 
     @Bean
@@ -33,6 +38,8 @@ public class JPAConfig {
 
    @Bean
    public DataSource dataSource(){
+       //we use this data source only for testing purposes (Development)
+       //if we are in (Production) we can use a DBCP pool
        DriverManagerDataSource ds = new DriverManagerDataSource();
        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
        ds.setUrl("jdbc:mysql://localhost:3306/maven_pos?createDatabaseIfNotExist=true");
