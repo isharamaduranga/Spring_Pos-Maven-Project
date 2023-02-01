@@ -9,6 +9,7 @@
 package lk.ijse.spring.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
@@ -23,5 +24,15 @@ public class JPAConfig {
        bean.setDataSource(ds);
        bean.setJpaVendorAdapter(jpa);
        return bean;
+   }
+
+   @Bean
+   public DataSource dataSource(){
+       DriverManagerDataSource ds = new DriverManagerDataSource();
+       ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+       ds.setUrl("jdbc:mysql://localhost:3306/maven_pos?createDatabaseIfNotExist=true");
+       ds.setUsername("root");
+       ds.setPassword("1234");
+       return ds;
    }
 }
