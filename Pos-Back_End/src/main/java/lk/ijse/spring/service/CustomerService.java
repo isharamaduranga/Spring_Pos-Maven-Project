@@ -8,7 +8,7 @@ public interface CustomerService {
 
     void addCustomer(CustomerDTO dto);
 
-    void deleteCustomer(CustomerDTO dto);
+    void deleteCustomer(String id);
 
     void updateCustomer(CustomerDTO dto);
 
