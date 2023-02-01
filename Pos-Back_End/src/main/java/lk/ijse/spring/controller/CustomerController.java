@@ -36,4 +36,9 @@ public class CustomerController {
         return new ResponseUtil("200","Success..",allCustomers);
     }
 
+    @DeleteMapping
+    public ResponseUtil  deleteCustomer(String id){
+
+    }
+
 }
