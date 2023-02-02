@@ -149,9 +149,9 @@
 <script src="assests/jquery/jquery-3.6.1.min.js"></script>
 
 <script>
-    let baseURL="http://localhost:8080/15_Spring_Data_JPA_war/";
+    let baseURL="http://localhost:8080/Pos_Jpa/";
 
-    loadAllItems();
+
 
     /** ==================================== D E F I N E D   V A L I D A T I O N S ===================================*/
     /** Item regular expressions */
@@ -327,7 +327,97 @@
         clearItemFields();
     });
     /** ================================================================================================================ */
+    loadAllItems();
 
+    function saveItems() {
+        let itemFormData = $("#itemForm").serialize();
+
+        $.ajax({
+            url:baseURL+"item",
+            method:"post",
+            dataType:"json",
+            data:itemFormData,
+            success:function (resp) {
+                alert(resp.message);
+                loadAllItems();
+            },
+            error:function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
+
+    $("#btnItemSave").click(function () {
+       saveItems();
+    });
+
+
+    $("#btnGetAllItem").click(function () {
+        loadAllItems();
+        clearItemFields();
+    })
+
+    function loadAllItems() {
+        $("#itemTable").empty();
+        $.ajax({
+            url:baseURL+"item",
+            method: "get",
+            dataType:"json",
+
+            success:function (resp) {
+                for (let itm of resp.data) {
+                    $("#itemTable").append("<tr> <td>"+itm.code+"</td> <td>"+itm.description+"</td> <td>"+itm.qtyOnHand+"</td> <td>"+itm.unitPrice+"</td> </tr>");
+                }
+                setData_Bind_Row_Events();
+                clearItemFields();
+                $("#txtItemCode").focus();
+            }
+
+        });
+    }
+
+    $("#btnDeleteItem").click(function () {
+        let itmCode = $("#txtItemCode").val();
+        $.ajax({
+            url:baseURL+"item?code="+itmCode,
+            method:"delete",
+            dataType:"json",
+            success:function (resp) {
+                alert(resp.message);
+                loadAllItems();
+            },
+            error:function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
+
+    $("#btnUpdateItem").click(function () {
+        let itmCode = $('#txtItemCode').val();
+        let itmDescription = $('#txtItemName').val();
+        let itmQtyOnHand = $('#txtItemPrice').val();
+        let itmUnitPrice = $('#txtItemQty').val();
+        let item={
+            code:itmCode,
+            description:itmDescription,
+            qtyOnHand:itmQtyOnHand,
+            unitPrice:itmUnitPrice
+        }
+        $.ajax({
+            url:baseURL+"item",
+            method:"put",
+            contentType:"application/json",
+            dataType:"json",
+            data: JSON.stringify(item),
+            success:function (resp) {
+                alert(resp.message);
+                loadAllItems();
+            },
+            error:function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
 
 
 </script>
