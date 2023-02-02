@@ -413,7 +413,38 @@ function loadAllCustomers() {
                     loadAllCustomers();
                 },
                 error:function (error) {
-                    alert(JSON.parse(error.responseText).message);
+                    let jsObj = JSON.parse(error.responseText);
+                    alert(jsObj.message);
+                }
+            });
+        });
+
+        $("btnUpdateCustomer").click(function () {
+            let CusId = $('#txtCusId').val();
+            let CusName = $('#txtCusName').val();
+            let CusAddress = $('#txtCusAddress').val();
+            let CusSalary = $('#txtCusSalary').val();
+
+            var customer={
+                id:CusId,
+                name:CusName,
+                address:CusAddress,
+                salary: CusSalary
+            }
+
+            $.ajax({
+                url:baseURL+"customer",
+                method:"put",
+                dataType:"json",
+                contentType:"application/json",
+                data: JSON.stringify(customer),
+                success:function (resp) {
+                    alert(resp.message);
+                    loadAllCustomers();
+                },
+                error:function (error) {
+                    let jsObj = JSON.parse(error.responseText);
+                    alert(jsObj.message);
                 }
             })
         })
