@@ -8,13 +8,33 @@
 
 package lk.ijse.spring.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lk.ijse.spring.dto.ItemDTO;
+import lk.ijse.spring.util.ResponseUtil;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/item")
 @CrossOrigin
 public class ItemController {
+
+    @GetMapping
+    public ResponseUtil getAllItems(){
+
+    }
+
+    @PostMapping
+    public ResponseUtil saveItem(@ModelAttribute ItemDTO dto){
+
+    }
+
+    @PutMapping
+    public ResponseUtil updateItem(@RequestBody ItemDTO dto){
+
+    }
+
+    @DeleteMapping(params = "code")
+    public ResponseUtil deleteItem(String code){
+
+    }
 
 }
