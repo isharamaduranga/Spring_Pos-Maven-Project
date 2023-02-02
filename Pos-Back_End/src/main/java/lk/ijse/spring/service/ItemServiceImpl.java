@@ -9,10 +9,24 @@
 package lk.ijse.spring.service;
 
 import lk.ijse.spring.dto.ItemDTO;
+import lk.ijse.spring.repo.ItemRepo;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
+@Service
+@Transactional
 public class ItemServiceImpl implements ItemService{
+
+    @Autowired
+    ItemRepo repo;
+
+    @Autowired
+    ModelMapper mapper;
 
     @Override
     public void addItem(ItemDTO dto) {
