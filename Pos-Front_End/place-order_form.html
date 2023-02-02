@@ -260,7 +260,7 @@
     loadAllCustomers();
     loadAllItems();
     setDates();
-    searchCustomer();
+
 
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
@@ -399,6 +399,35 @@
         param2.val("");
         param3.val("");
         param4.val("");
+    }
+
+    /** Error css changer */
+    function Span_BorderCssChange_Error(field, massage) {
+        field.css('border', '2px solid red');
+        field.parent().children('span').text(massage);
+    }
+
+    /** Default css changer */
+    function Span_BorderCssChange_Default(field, massage) {
+        field.css('border', '2px solid lime');
+        field.parent().children('span').text(massage);
+    }
+
+    $('#txtQty').on('keyup', function () {
+        orderQtyColourChange();
+    });
+
+    /** function of when change Colors with customer fields . */
+    function orderQtyColourChange() {
+        let qHand = parseInt($("#txtQTYOnHand").val());
+        let orQty = parseInt($("#txtQty").val());
+        if (qHand < orQty) {
+
+            Span_BorderCssChange_Error($('#txtQty'), "Please  Enter a Amount lower than: " + orQty + "");
+
+        } else {
+            Span_BorderCssChange_Default($('#txtQty'), "")
+        }
     }
 
 </script>
