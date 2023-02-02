@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
     <!--link Bootstrap Framework-->
-    <link rel="stylesheet" href="assests/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/pos_styles.css">
+    <link href="assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/pos_styles.css" rel="stylesheet">
     <link href="icons/css/all.min.css" rel="stylesheet">
 
 
@@ -20,8 +19,8 @@
     <nav class="navbar navbar-expand-lg bg-primary navColor">
         <div class="container-fluid">
             <a class="navbar-brand text-white fw-bold" href="index.html">
-                <img src="assests/images/logo.jpg" alt="Logo" width="40" height="40"
-                     class="d-inline-block align-text-center">
+                <img alt="Logo" class="d-inline-block align-text-center" height="40" src="assests/images/logo.jpg"
+                     width="40">
                 POS-SYSTEM
             </a>
             <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
@@ -30,7 +29,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul id="ul-list" class="navbar-nav  me-auto mb-2 mb-lg-0 text-white">
+                <ul class="navbar-nav  me-auto mb-2 mb-lg-0 text-white" id="ul-list">
                     <li class="nav-item fs-5 ">
                         <a aria-current="page" class="nav-link text-white" href="index.html" id="linkHome">Home</a>
                     </li>
@@ -63,7 +62,7 @@
     <!-- Title of the Customer Form -->
     <section class="container-fluid mt-1">
         <div style="height: 10px; text-align: center">
-            <h2 id="heading_h2" class="bg-secondary border border-2 border-secondary text-light"
+            <h2 class="bg-secondary border border-2 border-secondary text-light" id="heading_h2"
                 style="border-radius: 25px; font-family: 'poppins', sans-serif"> M A N A G E - C U S T O M E R S </h2>
         </div>
     </section>
@@ -76,12 +75,13 @@
             <div class="row">
                 <div class="mb-3 col">
                     <label class="form-label" for="txtCusId">Customer ID</label>
-                    <input class="form-control customer_form" id="txtCusId" placeholder="C00-001" name="id" type="text">
+                    <input class="form-control customer_form" id="txtCusId" name="id" placeholder="C00-001" type="text">
                     <span class="control-error" id="lblCusId"></span>
                 </div>
                 <div class="mb-3 col">
                     <label class="form-label" for="txtCusName">Customer Name</label>
-                    <input class="form-control customer_form" id="txtCusName" placeholder="Ishara Maduranga" name="name" type="text">
+                    <input class="form-control customer_form" id="txtCusName" name="name" placeholder="Ishara Maduranga"
+                           type="text">
                     <span class="control-error" id="lblCusName"></span>
                 </div>
             </div>
@@ -92,13 +92,13 @@
                 <div class="mb-3 col">
                     <label class="form-label" for="txtCusAddress">Customer Address</label>
                     <input class="form-control customer_form" id="txtCusAddress"
-                           placeholder="NO : C/195 Waharaka Ruwanwella" name="address" type="text">
+                           name="address" placeholder="NO : C/195 Waharaka Ruwanwella" type="text">
                     <span class="control-error" id="lblCusAddress"></span>
                 </div>
 
                 <div class="mb-3 col">
                     <label class="form-label" for="txtCusSalary">Customer Salary</label>
-                    <input class="form-control customer_form" id="txtCusSalary" placeholder="65000.00" name="salary"
+                    <input class="form-control customer_form" id="txtCusSalary" name="salary" placeholder="65000.00"
                            type="number">
                     <span class="control-error" id="lblCusSalary"></span>
                 </div>
@@ -119,11 +119,11 @@
     <!-- Section of Search Bar -->
     <section class="container-fluid mt-3">
         <form class="d-flex">
-            <input aria-label="Search" typeof="text" class="form-control me-2" id="txtSearchCustomer"
-                   placeholder="Search Customer..."
-                   type="search">
+            <input aria-label="Search" class="form-control me-2" id="txtSearchCustomer" placeholder="Search Customer..."
+                   type="search"
+                   typeof="text">
             <button class="btn btn-outline-success  border border-success border-2 " id="btnSearchCustomer"
-                    type="button" style="width: 150px">Search
+                    style="width: 150px" type="button">Search
             </button>
         </form>
     </section>
@@ -141,7 +141,7 @@
                     <th scope="col">Customer Salary</th>
                 </tr>
                 </thead>
-                <tbody id="customerTable" class="table-light">
+                <tbody class="table-light" id="customerTable">
 
 
                 </tbody>
@@ -156,7 +156,7 @@
 <script src="assests/jquery/jquery-3.6.1.min.js"></script>
 
 <script>
-    let baseURL="http://localhost:8080/Pos_Jpa/";
+    let baseURL = "http://localhost:8080/Pos_Jpa/";
 
 
     /** ==================================== D E F I N E D   V A L I D A T I O N S ===================================*/
@@ -242,7 +242,7 @@
             let option = confirm("Do you  Want To Save Customer ?");
 
             if (option) {
-                saveCustomer();
+                saveCustomers();
             }
 
             $("#txtCusId").focus();
@@ -315,7 +315,6 @@
     }
 
 
-
     /** BIND ROW CLICK EVENT FUNCTION ... */
     function setData_Bind_Row_Events() {
         $('#customerTable>tr').click(function () {
@@ -356,16 +355,16 @@
         let formdata = $("#customerForm").serialize();
 
         $.ajax({
-            url:baseURL+"customer",
-            method:"post",
-            dataType:"json",
-            data:formdata,
+            url: baseURL + "customer",
+            method: "post",
+            dataType: "json",
+            data: formdata,
 
-            success:function (resp) {
+            success: function (resp) {
                 alert(resp.message);
                 loadAllCustomers()
             },
-            error:function (error) {
+            error: function (error) {
                 let jSObj = JSON.parse(error.responseText);
                 alert(jSObj.message);
             }
@@ -382,18 +381,18 @@
 
         loadAllCustomers();
         clearTextFields();
-    })
+    });
 
-function loadAllCustomers() {
+    function loadAllCustomers() {
 
         $("#customerTable").empty();
         $.ajax({
-            url: baseURL+"customer",
+            url: baseURL + "customer",
             dataType: "json",
 
-            success:function (resp) {
+            success: function (resp) {
                 for (let cus of resp.data) {
-                    $("#customerTable").append("<tr><td>"+cus.id+"</td> <td>"+cus.name+"</td> <td>"+cus.address+"</td> <td>"+cus.salary+"</td></tr>");
+                    $("#customerTable").append("<tr><td>" + cus.id + "</td> <td>" + cus.name + "</td> <td>" + cus.address + "</td> <td>" + cus.salary + "</td></tr>");
                 }
                 setData_Bind_Row_Events();
                 clearTextFields()
@@ -401,18 +400,20 @@ function loadAllCustomers() {
 
             }
         });
+    }
+
 
         $("#btnDeleteCustomer").click(function () {
             let cusId = $("#txtCusId").val();
             $.ajax({
-                url:baseURL+"customer?id="+cusId,
+                url: baseURL + "customer?id=" + cusId,
                 method: "delete",
-                dataType:"json",
-                success:function (resp) {
+                dataType: "json",
+                success: function (resp) {
                     alert(resp.message);
                     loadAllCustomers();
                 },
-                error:function (error) {
+                error: function (error) {
                     let jsObj = JSON.parse(error.responseText);
                     alert(jsObj.message);
                 }
@@ -425,38 +426,29 @@ function loadAllCustomers() {
             let CusAddress = $('#txtCusAddress').val();
             let CusSalary = $('#txtCusSalary').val();
 
-            var customer={
-                id:CusId,
-                name:CusName,
-                address:CusAddress,
+            var customer = {
+                id: CusId,
+                name: CusName,
+                address: CusAddress,
                 salary: CusSalary
             }
 
             $.ajax({
-                url:baseURL+"customer",
-                method:"put",
-                dataType:"json",
-                contentType:"application/json",
+                url: baseURL + "customer",
+                method: "put",
+                dataType: "json",
+                contentType: "application/json",
                 data: JSON.stringify(customer),
-                success:function (resp) {
+                success: function (resp) {
                     alert(resp.message);
                     loadAllCustomers();
                 },
-                error:function (error) {
+                error: function (error) {
                     let jsObj = JSON.parse(error.responseText);
                     alert(jsObj.message);
                 }
             });
         });
-
-
-}
-
-
-
-
-
-
 
 
 
