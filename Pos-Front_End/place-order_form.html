@@ -262,7 +262,8 @@
     setDates();
 
     function setDates() {
-
+        let date = new Date().toJSON().split("T")[0];
+        $("#txtDate").val(date);
     }
 
 
