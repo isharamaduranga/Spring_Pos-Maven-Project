@@ -315,6 +315,36 @@
     }
 
 
+    $("#selectItemCode").change(function () {
+        let itmCode = $("#selectItemCode").val();
+        $("#txtItemCode").val(itmCode);
+        let resp = searchItem(itmCode);
+        if (resp.length > 0) {
+            $("#txtItemDescription").val(resp[0].description);
+            $("#txtItemPrice").val(resp[0].unitPrice);
+            $("#txtQTYOnHand").val(resp[0].qtyOnHand);
+        }
+        textFieldColorChange_Item();
+    })
+
+
+    function searchItem(itmCode) {
+        let response = "";
+        $.ajax({
+            url:baseURL+"item",
+            method:"get",
+            dataType: "json",
+            async: false,
+
+            success:function (resp) {
+                response=resp.data.filter((i) => {
+                    return i.code == itmCode;
+                });
+            }
+        });
+        return response;
+    }
+
 
     /** Function of Set Customer Data to fields after the Search */
     $("#selectCusID").change(function () {
@@ -346,6 +376,23 @@
                 .css("border", "2px solid limegreen");
         }
     }
+
+
+    /** function of change Colors with Item fields . */
+    function textFieldColorChange_Item() {
+        let itemCode = $('#selectItemCode').val();
+
+        if (itemCode === "Select Item") {
+            $("#txtItemCode,#txtItemDescription,#txtItemPrice,#txtQTYOnHand").css("border", "2px solid #ced4da");
+            //clear fields
+            clearSetDetails($("#txtItemCode"), $("#txtItemDescription"), $("#txtItemPrice"), $("#txtQTYOnHand"));
+        } else {
+            $("#txtItemCode,#txtItemDescription,#txtItemPrice,#txtQTYOnHand").css("border", "2px solid limegreen");
+
+        }
+    }
+
+
     /** function of clear Details passed that fields . */
     function clearSetDetails(param1, param2, param3, param4) {
         param1.val("");
