@@ -9,8 +9,10 @@
 package lk.ijse.spring.service;
 
 import lk.ijse.spring.dto.ItemDTO;
+import lk.ijse.spring.entity.Item;
 import lk.ijse.spring.repo.ItemRepo;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -30,21 +32,21 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public void addItem(ItemDTO dto) {
-
+        repo.save(mapper.map(dto, Item.class));
     }
 
     @Override
     public void deleteItem(String code) {
-
+        repo.deleteById(code);
     }
 
     @Override
     public void updateItem(ItemDTO dto) {
-
+        repo.save(mapper.map(dto, Item.class));
     }
 
     @Override
     public ArrayList<ItemDTO> getAllItems() {
-        return null;
+        return mapper.map(repo.findAll(), new TypeToken<ArrayList<ItemDTO>>(){}.getType());
     }
 }
