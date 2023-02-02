@@ -260,6 +260,7 @@
     loadAllCustomers();
     loadAllItems();
     setDates();
+    searchCustomer();
 
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
@@ -296,31 +297,39 @@
         });
     }
 
-    $("#selectCusID").change(function () {
+    /** Function of search  customer by Customer Id */
+    function searchCustomer(cusId){
+        let response = "";
+        $.ajax({
+            url:baseURL+"customer",
+            dataType:"json",
+            method:"get",
+            async:false,
+            success:function (resp) {
+                response = resp.data.filter((c) =>{
+                    return c.id == cusId;
+                });
+            }
+        });
+        return response;
+    }
 
+    /** Function of Set Customer Data to fields after the Search */
+    $("#selectCusID").change(function () {
         let cusId = $("#selectCusID").val();
         $("#orderCustomerID").val(cusId);
         let response = searchCustomer(cusId);
 
+        if (response.length > 0) {
+            $("#orderCustomerName").val(response[0].name);
+            $("#orderCustomerSalary").val(response[0].salary);
+            $("#orderCustomerAddress").val(response[0].address);
 
+            console.log(response);
+        }
 
-    })
+    });
 
-    function searchCustomer(cusId){
-        let response="";
-        $.ajax({
-            url:baseURL+"customer",
-            method:"get",
-            dataType:"json",
-
-            success:function (resp) {
-                resp.data.filter((i) =>{
-                    return i.code == cusId;
-                })
-            }
-        })
-        return response;
-    }
 
 
 
