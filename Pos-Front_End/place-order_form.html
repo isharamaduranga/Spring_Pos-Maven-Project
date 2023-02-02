@@ -314,6 +314,8 @@
         return response;
     }
 
+
+
     /** Function of Set Customer Data to fields after the Search */
     $("#selectCusID").change(function () {
         let cusId = $("#selectCusID").val();
@@ -327,13 +329,30 @@
 
             console.log(response);
         }
-
+        textFieldColorChange_customer();
     });
 
+    /** function of change Colors with customer fields . */
+    function textFieldColorChange_customer() {
+        let cusId = $('#selectCusID').val();
+        if (cusId === 'Select Customer') {
 
-
-
-
+            $("#orderCustomerID,#orderCustomerName,#orderCustomerSalary,#orderCustomerAddress")
+                .css("border", "2px solid #ced4da");
+            //clear fields
+            clearSetDetails($("#orderCustomerID"), $("#orderCustomerName"), $("#orderCustomerSalary"), $("#orderCustomerAddress"));
+        } else {
+            $("#orderCustomerID,#orderCustomerName,#orderCustomerSalary,#orderCustomerAddress")
+                .css("border", "2px solid limegreen");
+        }
+    }
+    /** function of clear Details passed that fields . */
+    function clearSetDetails(param1, param2, param3, param4) {
+        param1.val("");
+        param2.val("");
+        param3.val("");
+        param4.val("");
+    }
 
 </script>
 </body>
