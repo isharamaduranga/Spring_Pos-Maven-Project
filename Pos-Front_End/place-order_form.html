@@ -254,7 +254,29 @@
 <script src="assests/js/bootstrap.min.js"></script>
 
 <script>
-    let baseUrl = "";
+    let baseURL = "http://localhost:8080/Pos_Jpa/";
+
+    /** Functions of running when start the  program...*/
+    loadAllCustomers();
+
+
+    function loadAllCustomers() {
+        $("#selectCusID").append(`<option>Select Customer</option>`);
+
+        $.ajax({
+            url:baseURL+"customer",
+            method:"get",
+           success:function (resp) {
+               for (let cus of resp.data) {
+                   $("#selectCusID").append(`<option value="${cus.id}">${cus.id}</option>`);
+               }
+           }
+        });
+    }
+
+
+
+
 
 </script>
 </body>
