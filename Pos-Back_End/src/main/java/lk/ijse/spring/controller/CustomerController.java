@@ -27,7 +27,7 @@ public class CustomerController {
     @PostMapping
     public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO dto){
         service.addCustomer(dto);
-        return new ResponseUtil("200",dto.toString()+" Successfully Added..",null);
+        return new ResponseUtil("200",dto.getId()+" Successfully Added..",null);
     }
 
     @GetMapping
