@@ -42,4 +42,10 @@ public class CustomerController {
         return new ResponseUtil("200",id+" Successfully deleted...!",null);
     }
 
+    @PutMapping
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO dto){
+        service.updateCustomer(dto);
+        return new ResponseUtil("200", dto.getId()+" Successfully updated..", null);
+    }
+
 }

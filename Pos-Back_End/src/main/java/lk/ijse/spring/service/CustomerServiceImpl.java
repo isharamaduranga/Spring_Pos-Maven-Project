@@ -43,12 +43,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomer(CustomerDTO dto) {
-
+        repo.save(mapper.map(dto,Customer.class));
     }
 
     @Override
     public ArrayList<CustomerDTO> getAllCustomers() {
         List<Customer> customerList = repo.findAll();
-      return  mapper.map(customerList,new TypeToken<ArrayList<CustomerDTO>>(){}.getType());
+      return  mapper.map(customerList,new TypeToken<ArrayList<CustomerDTO>>() {
+      }.getType());
     }
 }

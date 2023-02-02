@@ -419,7 +419,7 @@ function loadAllCustomers() {
             });
         });
 
-        $("btnUpdateCustomer").click(function () {
+        $("#btnUpdateCustomer").click(function () {
             let CusId = $('#txtCusId').val();
             let CusName = $('#txtCusName').val();
             let CusAddress = $('#txtCusAddress').val();
@@ -446,8 +446,8 @@ function loadAllCustomers() {
                     let jsObj = JSON.parse(error.responseText);
                     alert(jsObj.message);
                 }
-            })
-        })
+            });
+        });
 
 
 }
