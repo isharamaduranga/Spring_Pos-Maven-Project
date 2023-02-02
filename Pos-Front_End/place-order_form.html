@@ -259,11 +259,16 @@
     /** Functions of running when start the  program...*/
     loadAllCustomers();
     loadAllItems();
+    setDates();
+
+    function setDates() {
+
+    }
+
 
     function loadAllCustomers() {
-
-        $("#selectCusID").append(`<option>Select Customer</option>`);
         $("#selectCusID").empty();
+        $("#selectCusID").append(`<option>Select Customer</option>`);
         $.ajax({
             url:baseURL+"customer",
             method:"get",
@@ -277,14 +282,14 @@
 
     function loadAllItems() {
         $("#selectItemCode").empty();
-        $("#selectCusID").append(`<option>Select Item</option>`);
+        $("#selectItemCode").append(`<option>Select Item</option>`);
 
         $.ajax({
             url:baseURL+"item",
             method:"get",
             success:function (resp) {
                 for (let itm of resp.data) {
-                    $("#selectCusID").append(`<option value="${itm.code}">${itm.code}</option>`);
+                    $("#selectItemCode").append(`<option value="${itm.code}">${itm.code}</option>`);
                 }
             }
         });
