@@ -296,6 +296,34 @@
         });
     }
 
+    $("#selectCusID").change(function () {
+
+        let cusId = $("#selectCusID").val();
+        $("#orderCustomerID").val(cusId);
+        let response = searchCustomer(cusId);
+
+
+
+    })
+
+    function searchCustomer(cusId){
+        let response="";
+        $.ajax({
+            url:baseURL+"customer",
+            method:"get",
+            dataType:"json",
+
+            success:function (resp) {
+                resp.data.filter((i) =>{
+                    return i.code == cusId;
+                })
+            }
+        })
+        return response;
+    }
+
+
+
 
 
 </script>
