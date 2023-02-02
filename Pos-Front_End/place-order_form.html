@@ -258,11 +258,12 @@
 
     /** Functions of running when start the  program...*/
     loadAllCustomers();
-
+    loadAllItems();
 
     function loadAllCustomers() {
-        $("#selectCusID").append(`<option>Select Customer</option>`);
 
+        $("#selectCusID").append(`<option>Select Customer</option>`);
+        $("#selectCusID").empty();
         $.ajax({
             url:baseURL+"customer",
             method:"get",
@@ -274,7 +275,20 @@
         });
     }
 
+    function loadAllItems() {
+        $("#selectItemCode").empty();
+        $("#selectCusID").append(`<option>Select Item</option>`);
 
+        $.ajax({
+            url:baseURL+"item",
+            method:"get",
+            success:function (resp) {
+                for (let itm of resp.data) {
+                    $("#selectCusID").append(`<option value="${itm.code}">${itm.code}</option>`);
+                }
+            }
+        });
+    }
 
 
 
