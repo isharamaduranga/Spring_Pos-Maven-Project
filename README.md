@@ -47,19 +47,19 @@
 ## Basic Background of Pos_System
 
 ### 🌱 DashBoard Interface
-<img src="ReadMe/hom.png">
+<img src="Pos-Front_End/ReadMe/hom.png">
 
 ### 🌱 Place Order Manage Interface
-<img src="ReadMe/pl_ord.png">
+<img src="Pos-Front_End/ReadMe/pl_ord.png">
 
 ### 🌱 Customers Manage Interface
-<img src="ReadMe/cus.png">
+<img src="Pos-Front_End/ReadMe/cus.png">
 
 ### 🌱 Items Manage Interface
-<img src="ReadMe/itm.png">
+<img src="Pos-Front_End/ReadMe/itm.png">
 
 ### 🌱 Order-Details Interface
-<img src="ReadMe/o_det.png">
+<img src="Pos-Front_End/ReadMe/o_det.png">
 
 
 ## Technology /framework used
