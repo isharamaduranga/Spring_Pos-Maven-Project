@@ -263,12 +263,15 @@
     setDates();
     $("#btnSubmitOrder").attr('disabled', true);
 
+
+    /** Function of Set Current date   */
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
         $("#txtDate").val(date);
     }
 
 
+    /**Function of Load all customer Ids Records In combo  */
     function loadAllCustomers() {
         $("#selectCusID").empty();
         $("#selectCusID").append(`<option>Select Customer</option>`);
@@ -283,10 +286,11 @@
         });
     }
 
+
+    /**Function of Load all Item codes Records In combo  */
     function loadAllItems() {
         $("#selectItemCode").empty();
         $("#selectItemCode").append(`<option>Select Item</option>`);
-
         $.ajax({
             url: baseURL + "item",
             method: "get",
@@ -297,6 +301,7 @@
             }
         });
     }
+
 
     /** Function of search  customer by Customer Id */
     function searchCustomer(cusId) {
@@ -316,6 +321,7 @@
     }
 
 
+    /** Function of Set Item Data to fields after the Search */
     $("#selectItemCode").change(function () {
         let itmCode = $("#selectItemCode").val();
         $("#txtItemCode").val(itmCode);
@@ -329,6 +335,7 @@
     })
 
 
+    /** Function of search  Item by Item code */
     function searchItem(itmCode) {
         let response = "";
         $.ajax({
@@ -362,6 +369,7 @@
         }
         textFieldColorChange_customer();
     });
+
 
     /** function of change Colors with customer fields . */
     function textFieldColorChange_customer() {
@@ -402,11 +410,13 @@
         param4.val("");
     }
 
+
     /** Error css changer */
     function Span_BorderCssChange_Error(field, massage) {
         field.css('border', '2px solid red');
         field.parent().children('span').text(massage);
     }
+
 
     /** Default css changer */
     function Span_BorderCssChange_Default(field, massage) {
@@ -414,9 +424,12 @@
         field.parent().children('span').text(massage);
     }
 
+
+    /** function of qty change keyUp event */
     $('#txtQty').on('keyup', function () {
         orderQtyColourChange();
     });
+
 
     /** function of when change Colors with customer fields . */
     function orderQtyColourChange() {
@@ -449,6 +462,9 @@
             alert("Please enter order Quantity ..!");
         }
     });
+
+
+
     /** Define the Cart Array */
     var cart = [];
 
@@ -470,14 +486,12 @@
                 return;
             }
         }
-
         let cartOrder = new cartModel(code, description, itmPrice, buyQty, total);
         cart.push(cartOrder);
 
         $("#txtBalance,#txtCash,#txtDiscount").val("");
-
-
     }
+
 
     /** function of load all data (included to search same oid and updated) */
     function loadAllCart() {
@@ -487,6 +501,7 @@
         }
 
     }
+
 
     /** function of Calculate Total of cart items.. */
     function calculateTotal() {
@@ -501,6 +516,7 @@
     });
         tempTot=tot;
     }
+
 
     /** function of Calculate Discount of cart items.. */
     $("#txtDiscount").on('keyup',function () {
@@ -518,6 +534,8 @@
 
         }
     });
+
+
     /** function of txtCash button keyup event logic... */
     $('#txtCash').on('keyup', function (event) {
 
