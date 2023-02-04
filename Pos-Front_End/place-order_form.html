@@ -247,7 +247,8 @@
         </div>
     </div>
 </section>
-
+<!--Import js for Cart.js-->
+<script src="model/cart.js"></script>
 
 <!--Import js for bootstrap-->
 <script src="assests/jquery/jquery-3.6.1.min.js"></script>
@@ -445,6 +446,8 @@
             alert("Please enter order Quantity ..!");
         }
     });
+    /** Define the Cart Array */
+    var cart = [];
 
     function addToCart() {
         let code = $("#txtItemCode").val();
@@ -452,6 +455,10 @@
         let itmPrice = $("#txtItemPrice").val();
         let buyQty = $("#txtQty").val();
         let total = parseFloat(itmPrice) * parseFloat(buyQty);
+
+
+        let cartModel = new cartModel(code,description,itmPrice,buyQty,total);
+        cart.push(cartModel);
 
         $("#orderTable").append(`<tr><td>${code}</td> <td>${description}</td> <td>${itmPrice}</td> <td>${buyQty}</td> <td>${total}</td></tr>`)
     }
