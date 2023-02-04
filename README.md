@@ -21,6 +21,16 @@
 🌱 Site-Map-URL----> [Click Me!](https://www.gloomaps.com/3XQDYVDqdC)<br>
 🌱 Wire-Frame-URL----> [Click Me!](https://wireframe.cc/9oCnTI)<br>
 
+## Technology /framework used
+* Spring(Web MVC)
+* Java
+* Servlets
+* Hibernate
+* Maven
+* HTML
+* CSS
+* Java Script
+* Bootstrap-V5.2
 ## ✔ Description
 #### This website designs for showing some proceed of web pos system.I categorize them into few Functionlities ...
 ### Manage Customer
@@ -60,13 +70,6 @@
 
 ### 🌱 Order-Details Interface
 <img src="Pos-Front_End/ReadMe/o_det.png">
-
-
-## Technology /framework used
-* HTML
-* CSS
-* Java Script
-* Bootstrap-V5.2
 
 ## License
 **Copyright @ 2022 Web_Pos_System All Right Reserved By Ishara Maduranga**
