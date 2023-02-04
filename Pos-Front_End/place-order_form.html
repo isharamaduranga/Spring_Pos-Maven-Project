@@ -493,12 +493,28 @@
         tot+=parseFloat($($(this).children().get(4)).text());
         $("#total>span").text(tot).append('.00');
 
-        if ($("#txtDiscount").val() == "") {
+        if ($("#txtDiscount").val() === "") {
             $('#subtotal>span').text(tot);
         }
     });
-
+        tempTot=tot;
     }
+
+    $("#txtDiscount").on('keyup',function () {
+        if ($("#txtDiscount").val() === "") {
+            $('#subtotal>span').text('0.00');
+        }else{
+            let tot = parseFloat(tempTot);
+            let dis = tot / 100 * parseFloat($("#txtDiscount").val());
+
+            $('#subtotal>span').text(tot - dis);
+
+            let cash = parseInt($("#txtCash").val());
+            let subTot = parseInt($("#subtot").text());
+            $("#txtBalance").val(cash - subTot);
+
+        }
+    })
 
 
 </script>
