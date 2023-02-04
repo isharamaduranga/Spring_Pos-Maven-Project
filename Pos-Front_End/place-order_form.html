@@ -431,6 +431,22 @@
     }
 
     $("#btnAddToTable").click(function () {
+        let qtyOnHand = parseInt($("#txtQTYOnHand").val())
+        let buyQty = parseInt($("#txtQty").val());
+        if ($("#txtQty").val()!="") {
+
+            if (qtyOnHand < buyQty) {
+                alert("This Item Not Available for this Quantity !!!");
+                $("#txtQty").val()
+            }else {
+            addToCart()
+            }
+        }else{
+            alert("Please enter order Quantity ..!");
+        }
+    });
+
+    function addToCart() {
         let code = $("#txtItemCode").val();
         let description = $("#txtItemDescription").val();
         let itmPrice = $("#txtItemPrice").val();
@@ -438,8 +454,7 @@
         let total = parseFloat(itmPrice) * parseFloat(buyQty);
 
         $("#orderTable").append(`<tr><td>${code}</td> <td>${description}</td> <td>${itmPrice}</td> <td>${buyQty}</td> <td>${total}</td></tr>`)
-
-    });
+    }
 
 
 
