@@ -431,6 +431,7 @@
         }
     }
 
+
     $("#btnAddToTable").click(function () {
         let qtyOnHand = parseInt($("#txtQTYOnHand").val())
         let buyQty = parseInt($("#txtQty").val());
@@ -440,7 +441,8 @@
                 alert("This Item Not Available for this Quantity !!!");
                 $("#txtQty").val()
             }else {
-            addToCart()
+            addToCart();
+
             }
         }else{
             alert("Please enter order Quantity ..!");
@@ -456,12 +458,27 @@
         let buyQty = $("#txtQty").val();
         let total = parseFloat(itmPrice) * parseFloat(buyQty);
 
+        for (let cartElement of cart) {
+            if (cartElement.code == code) {
+                var newQty= cartElement.getBuyQty()+buyQty;
+                var newTot= itmPrice*newQty;
+
+                cartElement.setBuyQty(newQty);
+                cartElement.setTotal(newTot);
+                return;
+            }
+        }
 
         let cartModel = new cartModel(code,description,itmPrice,buyQty,total);
         cart.push(cartModel);
 
+        $("#txtBalance,#txtCash,#txtDiscount").val("");
+
         $("#orderTable").append(`<tr><td>${code}</td> <td>${description}</td> <td>${itmPrice}</td> <td>${buyQty}</td> <td>${total}</td></tr>`)
     }
+
+
+
 
 
 
