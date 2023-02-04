@@ -6,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
     <!--link Bootstrap Framework-->
-    <link rel="stylesheet" href="assests/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/pos_styles.css">
+    <link href="assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/pos_styles.css" rel="stylesheet">
     <link href="icons/css/all.min.css" rel="stylesheet">
 
 </head>
@@ -16,8 +16,8 @@
     <nav class="navbar navbar-expand-lg bg-primary navColor">
         <div class="container-fluid">
             <a class="navbar-brand text-white fw-bold" href="index.html">
-                <img src="assests/images/logo.jpg" alt="Logo" width="40" height="40"
-                     class="d-inline-block align-text-center">
+                <img alt="Logo" class="d-inline-block align-text-center" height="40" src="assests/images/logo.jpg"
+                     width="40">
                 POS-SYSTEM
             </a>
             <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
@@ -26,12 +26,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul id="ul-list" class="navbar-nav  me-auto mb-2 mb-lg-0 text-white">
+                <ul class="navbar-nav  me-auto mb-2 mb-lg-0 text-white" id="ul-list">
                     <li class="nav-item fs-5 ">
                         <a aria-current="page" class="nav-link text-white" href="index.html" id="linkHome">Home</a>
                     </li>
                     <li class="nav-item fs-5">
-                        <a id="#linkCustomer" class="nav-link text-white table-hover " href="customer_form.html">Customers</a>
+                        <a class="nav-link text-white table-hover " href="customer_form.html" id="#linkCustomer">Customers</a>
                     </li>
                     <li class="nav-item fs-5">
                         <a class="nav-link text-white" href="item_form.html" id="linkItem">Items</a>
@@ -48,7 +48,7 @@
     </nav>
 </header>
 
-<section id="order" style="height: 85vh" class="bg-white">
+<section class="bg-white" id="order" style="height: 85vh">
     <section class="container-fluid mt-2">
         <div style="height: 8px; text-align: center">
             <h2 class="bg-secondary border border-2 border-secondary text-light"
@@ -70,7 +70,7 @@
                                     Order ID:
                                     <form>
                                         <input class="form-control text-primary text-lg-center"
-                                               style="font-weight: bold " id="txtOrderId" type="button">
+                                               id="txtOrderId" style="font-weight: bold " type="button">
                                         <span class="control-error_item" id="lblOrderID"></span>
                                     </form>
                                 </div>
@@ -273,13 +273,13 @@
         $("#selectCusID").empty();
         $("#selectCusID").append(`<option>Select Customer</option>`);
         $.ajax({
-            url:baseURL+"customer",
-            method:"get",
-           success:function (resp) {
-               for (let cus of resp.data) {
-                   $("#selectCusID").append(`<option value="${cus.id}">${cus.id}</option>`);
-               }
-           }
+            url: baseURL + "customer",
+            method: "get",
+            success: function (resp) {
+                for (let cus of resp.data) {
+                    $("#selectCusID").append(`<option value="${cus.id}">${cus.id}</option>`);
+                }
+            }
         });
     }
 
@@ -288,9 +288,9 @@
         $("#selectItemCode").append(`<option>Select Item</option>`);
 
         $.ajax({
-            url:baseURL+"item",
-            method:"get",
-            success:function (resp) {
+            url: baseURL + "item",
+            method: "get",
+            success: function (resp) {
                 for (let itm of resp.data) {
                     $("#selectItemCode").append(`<option value="${itm.code}">${itm.code}</option>`);
                 }
@@ -299,15 +299,15 @@
     }
 
     /** Function of search  customer by Customer Id */
-    function searchCustomer(cusId){
+    function searchCustomer(cusId) {
         let response = "";
         $.ajax({
-            url:baseURL+"customer",
-            dataType:"json",
-            method:"get",
-            async:false,
-            success:function (resp) {
-                response = resp.data.filter((c) =>{
+            url: baseURL + "customer",
+            dataType: "json",
+            method: "get",
+            async: false,
+            success: function (resp) {
+                response = resp.data.filter((c) => {
                     return c.id == cusId;
                 });
             }
@@ -332,13 +332,13 @@
     function searchItem(itmCode) {
         let response = "";
         $.ajax({
-            url:baseURL+"item",
-            method:"get",
+            url: baseURL + "item",
+            method: "get",
             dataType: "json",
             async: false,
 
-            success:function (resp) {
-                response=resp.data.filter((i) => {
+            success: function (resp) {
+                response = resp.data.filter((i) => {
                     return i.code == itmCode;
                 });
             }
@@ -435,16 +435,17 @@
     $("#btnAddToTable").click(function () {
         let qtyOnHand = parseInt($("#txtQTYOnHand").val())
         let buyQty = parseInt($("#txtQty").val());
-        if ($("#txtQty").val()!="") {
+        if ($("#txtQty").val() != "") {
 
             if (qtyOnHand < buyQty) {
                 alert("This Item Not Available for this Quantity !!!");
                 $("#txtQty").val()
-            }else {
-            addToCart();
-            loadAllCart();
+            } else {
+                addToCart();
+                loadAllCart();
+                calculateTotal();
             }
-        }else{
+        } else {
             alert("Please enter order Quantity ..!");
         }
     });
@@ -461,7 +462,7 @@
         for (let cartElement of cart) {
             if (cartElement.getCode() == code) {
                 var newQty = +cartElement.getBuyQty() + parseInt(buyQty);
-                var newTot= itmPrice*newQty;
+                var newTot = itmPrice * newQty;
 
                 cartElement.setBuyQty(newQty);
                 cartElement.setTotal(newTot);
@@ -469,7 +470,7 @@
             }
         }
 
-        let cartOrder = new cartModel(code,description,itmPrice,buyQty,total);
+        let cartOrder = new cartModel(code, description, itmPrice, buyQty, total);
         cart.push(cartOrder);
 
         $("#txtBalance,#txtCash,#txtDiscount").val("");
@@ -486,7 +487,18 @@
 
     }
 
+    function calculateTotal() {
+        let tot=0;
+    $("#orderTable>tr").each(function () {
+        tot+=parseFloat($($(this).children().get(4)).text());
+        $("#total>span").text(tot).append('.00');
 
+        if ($("#txtDiscount").val() == "") {
+            $('#subtotal>span').text(tot);
+        }
+    });
+
+    }
 
 
 </script>
