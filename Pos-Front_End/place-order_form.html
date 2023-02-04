@@ -261,7 +261,7 @@
     loadAllCustomers();
     loadAllItems();
     setDates();
-
+    $("#btnSubmitOrder").attr('disabled', true);
 
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
@@ -517,8 +517,31 @@
             $("#txtBalance").val(cash - subTot);
 
         }
-    })
+    });
+    /** function of txtCash button keyup event logic... */
+    $('#txtCash').on('keyup', function (event) {
 
+        if (event.key == "Enter") {
+            event.preventDefault();
+        }
+        let cash = parseFloat($('#txtCash').val());
+        let tot = $('#total>span').text();
+
+        if (cash > tot) {
+            let total = parseFloat($('#subtot').text());
+            let balance = cash - total;
+
+            $('#txtBalance').val(balance);
+
+            Span_BorderCssChange_Default($('#txtCash'), "");
+
+           $("#btnSubmitOrder").attr('disabled', false);
+        } else {
+
+            Span_BorderCssChange_Error($('#txtCash'), "Insufficient Credit Balance");
+
+        }
+    });
 
 </script>
 </body>
