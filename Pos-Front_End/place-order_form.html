@@ -430,6 +430,20 @@
         }
     }
 
+    $("#btnAddToTable").click(function () {
+        let code = $("#txtItemCode").val();
+        let description = $("#txtItemDescription").val();
+        let itmPrice = $("#txtItemPrice").val();
+        let buyQty = $("#txtQty").val();
+        let total = parseFloat(itmPrice) * parseFloat(buyQty);
+
+        $("#orderTable").append(`<tr><td>${code}</td> <td>${description}</td> <td>${itmPrice}</td> <td>${buyQty}</td> <td>${total}</td></tr>`)
+
+    });
+
+
+
+
 </script>
 </body>
 </html>
