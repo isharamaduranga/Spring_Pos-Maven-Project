@@ -452,6 +452,7 @@
     /** Define the Cart Array */
     var cart = [];
 
+    /** function of add To Cart */
     function addToCart() {
         let code = $("#txtItemCode").val();
         let description = $("#txtItemDescription").val();
@@ -478,7 +479,7 @@
 
     }
 
-
+    /** function of load all data (included to search same oid and updated) */
     function loadAllCart() {
         $("#orderTable").empty();
         for (let c of cart) {
@@ -487,6 +488,7 @@
 
     }
 
+    /** function of Calculate Total of cart items.. */
     function calculateTotal() {
         let tot=0;
     $("#orderTable>tr").each(function () {
@@ -500,6 +502,7 @@
         tempTot=tot;
     }
 
+    /** function of Calculate Discount of cart items.. */
     $("#txtDiscount").on('keyup',function () {
         if ($("#txtDiscount").val() === "") {
             $('#subtotal>span').text('0.00');
