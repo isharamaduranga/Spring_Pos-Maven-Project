@@ -442,7 +442,7 @@
                 $("#txtQty").val()
             }else {
             addToCart();
-
+            loadAllCart();
             }
         }else{
             alert("Please enter order Quantity ..!");
@@ -459,8 +459,8 @@
         let total = parseFloat(itmPrice) * parseFloat(buyQty);
 
         for (let cartElement of cart) {
-            if (cartElement.code == code) {
-                var newQty= cartElement.getBuyQty()+buyQty;
+            if (cartElement.getCode() == code) {
+                var newQty = +cartElement.getBuyQty() + parseInt(buyQty);
                 var newTot= itmPrice*newQty;
 
                 cartElement.setBuyQty(newQty);
@@ -469,16 +469,22 @@
             }
         }
 
-        let cartModel = new cartModel(code,description,itmPrice,buyQty,total);
-        cart.push(cartModel);
+        let cartOrder = new cartModel(code,description,itmPrice,buyQty,total);
+        cart.push(cartOrder);
 
         $("#txtBalance,#txtCash,#txtDiscount").val("");
 
-        $("#orderTable").append(`<tr><td>${code}</td> <td>${description}</td> <td>${itmPrice}</td> <td>${buyQty}</td> <td>${total}</td></tr>`)
+
     }
 
 
+    function loadAllCart() {
+        $("#orderTable").empty();
+        for (let c of cart) {
+            $("#orderTable").append(`<tr><td>${c.getCode()}</td> <td>${c.getDescription()}</td> <td>${c.getItemPrice()}</td> <td>${c.getBuyQty()}</td> <td>${c.getTotal()}</td></tr>`)
+        }
 
+    }
 
 
 
