@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,4 +24,7 @@ public class OrdersDTO {
     private String oid;
     private String cusID;
     private LocalDate date;
+
+    //For define orderDetails json array into backend
+    private ArrayList<OrderDetailsDTO> orderDetails;
 }
