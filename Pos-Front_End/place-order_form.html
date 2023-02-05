@@ -70,7 +70,7 @@
                                     Order ID:
                                     <form>
                                         <input class="form-control text-primary text-lg-center"
-                                               id="txtOrderId" style="font-weight: bold " type="button">
+                                               id="txtOrderId" style="font-weight: bold " type="text">
                                         <span class="control-error_item" id="lblOrderID"></span>
                                     </form>
                                 </div>
@@ -562,7 +562,7 @@
     });
 
 
-
+    /** function of Purchase Order logics. */
     $("#btnSubmitOrder").click(function () {
 
         let orderID = $("#txtOrderId").val();
@@ -576,9 +576,10 @@
             cusID:customerID,
             orderDetails:orderD
         }
+        console.log(ob)
 
+        //send request to back end
         $.ajax({
-
             url:baseURL+"purchase",
             method:"post",
             dataType:"json",
@@ -594,6 +595,7 @@
         });
     });
 
+    /** function of get Item Details... */
     function getItemDetails(orderID) {
         var detailsArray = [];
 
