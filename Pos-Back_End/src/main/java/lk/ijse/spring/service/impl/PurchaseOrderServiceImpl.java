@@ -8,7 +8,13 @@
 
 package lk.ijse.spring.service.impl;
 
+import lk.ijse.spring.dto.OrdersDTO;
 import lk.ijse.spring.service.PurchaseOrderService;
 
 public class PurchaseOrderServiceImpl implements PurchaseOrderService {
+
+    @Override
+    public void purchaseOrder(OrdersDTO dto) {
+
+    }
 }
