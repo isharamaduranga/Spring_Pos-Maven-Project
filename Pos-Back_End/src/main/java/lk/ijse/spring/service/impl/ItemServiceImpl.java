@@ -32,16 +32,25 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void addItem(ItemDTO dto) {
+        if(repo.existsById(dto.getCode())){
+            throw new RuntimeException("Item "+dto.getCode()+" Already Exist..!!!");
+        }
         repo.save(mapper.map(dto, Item.class));
     }
 
     @Override
     public void deleteItem(String code) {
+        if (!repo.existsById(code)){
+            throw new RuntimeException("Item "+code+" Not Available to Delete..!");
+        }
         repo.deleteById(code);
     }
 
     @Override
     public void updateItem(ItemDTO dto) {
+        if (!repo.existsById(dto.getCode())) {
+            throw new RuntimeException("Item "+dto.getCode()+" Not Available to Update..!");
+        }
         repo.save(mapper.map(dto, Item.class));
     }
 
