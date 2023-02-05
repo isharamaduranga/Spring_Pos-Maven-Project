@@ -561,6 +561,55 @@
         }
     });
 
+
+
+    $("#btnSubmitOrder").click(function () {
+
+        let orderID = $("#txtOrderId").val();
+        let orderDate = $("#txtDate").val();
+        let customerID = $("#orderCustomerID").val();
+        let orderD= getItemDetails(orderID);
+
+        let ob ={
+            oid:orderID,
+            date:orderDate,
+            cusID:customerID,
+            orderDetails:orderD
+        }
+
+        $.ajax({
+
+            url:baseURL+"purchase",
+            method:"post",
+            dataType:"json",
+            data:JSON.stringify(ob),
+            contentType:"application/json",
+
+            success:function (resp) {
+                alert(resp.message)
+            },
+            error:function (error) {
+                alert(JSON.parse(error.responseText).message)
+            }
+        });
+    });
+
+    function getItemDetails(orderID) {
+        var detailsArray = [];
+
+        let rows = $("#orderTable").children().length;
+
+        for (let i = 0; i < rows; i++) {
+            let itmCode = $('#orderTable').children().eq(i).children(":eq(0)").text();
+            let itmPrice = $('#orderTable').children().eq(i).children(":eq(2)").text();
+            let itmQty = $('#orderTable').children().eq(i).children(":eq(3)").text();
+
+            detailsArray.push({oid:orderID,itemCode:itmCode,qty:itmQty,unitPrice:itmPrice})
+        }
+        return detailsArray;
+    }
+
+
 </script>
 </body>
 </html>
