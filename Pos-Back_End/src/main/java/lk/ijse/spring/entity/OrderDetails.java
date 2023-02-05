@@ -13,10 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @AllArgsConstructor
@@ -24,6 +21,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @ToString
+@IdClass(OrderItem_PK.class)
 public class OrderDetails {
     @Id
     private String oid;

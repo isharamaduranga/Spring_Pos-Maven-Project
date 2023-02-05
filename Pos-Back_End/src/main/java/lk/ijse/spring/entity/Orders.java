@@ -33,7 +33,7 @@ public class Orders {
     private Customer cusID;
     private LocalDate date;
 
-    //Inverse
+    //Inverse (someone save order already manage and if that order has orderDetails data auto Manage orderDetails)
     @OneToMany(mappedBy = "orders",cascade = CascadeType.ALL)
     private List<OrderDetails> orderDetails;
 

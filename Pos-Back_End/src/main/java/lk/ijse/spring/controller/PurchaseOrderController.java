@@ -9,7 +9,6 @@
 package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.OrdersDTO;
-import lk.ijse.spring.service.ItemService;
 import lk.ijse.spring.service.PurchaseOrderService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class PurchaseOrderController {
     @PostMapping
     public ResponseUtil purchaseOrder(@RequestBody OrdersDTO dto){
         System.out.println(dto);
-
+        service.purchaseOrder(dto);
         return new ResponseUtil("200","✔ Successfully Place Order...",null);
     }
 }
