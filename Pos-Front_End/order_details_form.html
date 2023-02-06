@@ -111,7 +111,34 @@
 <script src="assests/jquery/jquery-3.6.1.min.js"></script>
 
 <script>
-    let baseUrl = "";
+    let baseURL = "http://localhost:8080/Pos_Jpa/";
+
+    loadAllOrder();
+
+
+    function loadAllOrder() {
+        $("#orderTables").empty();
+        $("#orderDetailTable").empty();
+        $.ajax({
+            url:baseURL+"purchase",
+            dataType:"json",
+            success:function (resp) {
+                console.log(resp.data)
+
+                for (let i = 0; i < resp.data.length; i++) {
+                    let order = resp.data[i];
+                    $("#orderTables").append("<tr> <td>"+order.oid+"</td> <td>"+order.date+"</td> <td>"+order.cusID+"</td> </tr>");
+
+                    for (let o of order.orderDetails) {
+                        $("#orderDetailTable").append("<tr><td>" + o.oid + "</td> <td>" + o.itemCode + "</td> <td>" + o.qty + "</td> <td>" + o.unitPrice + "</td> </tr>");
+                    }
+                }
+
+            }
+        });
+    }
+
+
 
 </script>
 </body>

@@ -14,6 +14,8 @@ import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/purchase")
 @CrossOrigin
@@ -26,4 +28,12 @@ public class PurchaseOrderController {
         service.purchaseOrder(dto);
         return new ResponseUtil("200","✔ Successfully Place Order...",null);
     }
+
+    @GetMapping
+    public ResponseUtil getAllOrders(){
+        ArrayList<OrdersDTO> allOrders = service.getAllOrders();
+        System.out.println(allOrders);
+        return new ResponseUtil("200","Successfully load all orders",allOrders);
+    }
 }
+

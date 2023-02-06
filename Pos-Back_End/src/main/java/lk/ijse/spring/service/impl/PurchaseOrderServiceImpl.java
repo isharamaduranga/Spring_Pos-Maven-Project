@@ -8,20 +8,24 @@
 
 package lk.ijse.spring.service.impl;
 
+import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.dto.OrdersDTO;
+import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.entity.Item;
 import lk.ijse.spring.entity.OrderDetails;
 import lk.ijse.spring.entity.Orders;
 import lk.ijse.spring.repo.ItemRepo;
 import lk.ijse.spring.repo.OrderDetailsRepo;
 import lk.ijse.spring.repo.OrdersRepo;
-import lk.ijse.spring.service.ItemService;
 import lk.ijse.spring.service.PurchaseOrderService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,17 +43,16 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
     @Override
     public void purchaseOrder(OrdersDTO dto) {
-        // Let's handle it in Spring way(dto convert entity)
+        /** Let's handle it in Spring way(dto convert entity)   */
         Orders orders = mapper.map(dto, Orders.class);
 
-        //check order already available..
+        /** check order already available...  */
         if (ordersRepo.existsById(orders.getOid())){
             throw new RuntimeException("Order : "+orders.getOid()+ " Already Available .!!!");
         }
+
         /** save order and order details (because define order entity cascade type ALL) */
-
         ordersRepo.save(orders); // If an error occur all transactions will be rolled backend
-
 
         for (OrderDetails od : orders.getOrderDetails()) {
             /**  find and update item qty on hand ...  */
@@ -58,12 +61,16 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
             if (!resp.isPresent()) {
                 throw new RuntimeException(od.getItemCode()+ ": Item Not Available !!!");
             }
-
             Item item = resp.get();
             item.setQtyOnHand((item.getQtyOnHand()- od.getQty()));
             itemRepo.save(item);
-
         }
+    }
 
+    @Override
+    public ArrayList<OrdersDTO> getAllOrders() {
+        List<Orders> ordersList = ordersRepo.findAll();
+        return  mapper.map(ordersList,new TypeToken<ArrayList<OrdersDTO>>() {
+        }.getType());
     }
 }
