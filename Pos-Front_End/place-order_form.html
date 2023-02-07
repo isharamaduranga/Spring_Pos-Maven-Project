@@ -70,7 +70,7 @@
                                     Order ID:
                                     <form>
                                         <input class="form-control text-primary text-lg-center"
-                                               id="txtOrderId" style="font-weight: bold " type="text">
+                                               id="txtOrderId" style="font-weight: bold " type="button">
                                         <span class="control-error_item" id="lblOrderID"></span>
                                     </form>
                                 </div>
@@ -258,6 +258,7 @@
     let baseURL = "http://localhost:8080/Pos_Jpa/";
 
     /** Functions of running when start the  program...*/
+    generateOrderID();
     loadAllCustomers();
     loadAllItems();
     setDates();
@@ -610,6 +611,34 @@
         }
         return detailsArray;
     }
+
+    /** function of Auto generate Order id with related field. */
+    function generateOrderID() {
+        try {
+            $.ajax({
+                url: baseURL + "purchase",
+                dataType: "json",
+                success: function (resp) {
+                    for (let oder of resp.data) {
+                        let lastOId = oder.oid;
+                        let newOId = parseInt(lastOId.substring(4, 7)) + 1;
+                        if (newOId < 10) {
+                            $("#txtOrderId").val("OID-00" + newOId);
+                        } else if (newOId < 100) {
+                            $("#txtOrderId").val("OID-0" + newOId);
+                        } else {
+                            $("#txtOrderId").val("OID-" + newOId);
+                        }
+                    }
+                }
+            });
+
+
+        } catch (e) {
+            $("#txtOrderId").val("OID-001");
+        }
+    }
+
 
 
 </script>
