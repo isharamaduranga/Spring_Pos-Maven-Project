@@ -588,7 +588,21 @@
             contentType:"application/json",
 
             success:function (resp) {
-                alert(resp.message)
+                alert(resp.message);
+                //call generate order id
+                generateOrderID();
+
+                //functionalities of clear cart details and clear cart array after the Purchase order
+                cart.splice(0, cart.length);
+                $('#orderTable').empty();
+                $("#btnSubmitOrder").attr('disabled', true);
+                $("#total>span,#subtot").text("00");
+                //load customer and items ids with combo box
+                loadAllCustomers();
+                loadAllItems();
+
+                $("#txtItemCode,#txtItemDescription,#txtQTYOnHand,#txtQty,#orderCustomerID,#orderCustomerAddress,#orderCustomerName,#orderCustomerSalary,#txtCash,#txtBalance,#txtDiscount").val("");
+
             },
             error:function (error) {
                 alert(JSON.parse(error.responseText).message)
